@@ -56,28 +56,26 @@ function App() {
     try {
       const lang = selectedMode.startsWith("vi") ? "vi" : "en";
 
-      const res = await fetch('/api/tts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: text.slice(0, 200), lang })
+      const res = await fetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text.slice(0, 200), lang }),
       });
 
       const data = await res.json();
-
       if (data.success) {
         const a = document.createElement("a");
-        a.href = data.file;    // URL mp3 từ google-tts-api
+        a.href = data.file;
         a.download = "speech.mp3";
         a.click();
       } else {
-        alert(data.error || 'Không thể tạo file âm thanh');
+        throw new Error(data.error || "Không thể tạo file");
       }
     } catch (err) {
       alert("Tải file thất bại.");
       console.error(err);
     }
   };
-
 
   const translateText = async (targetLang) => {
     const trimmedText = text.trim();
@@ -231,8 +229,8 @@ function App() {
       <button className="speak-btn" onClick={handleSpeak}>
         ▶️ Đọc ngay
       </button>
-      <button className="speak-btn" onClick={handleDownloadMP3}>
-        💾 Tải về MP3
+            <button className="speak-btn" onClick={handleDownloadMP3}>
+      💾 Tải về MP3
       </button>
 
       {/* CSS */}
