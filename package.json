@@ -1,0 +1,21 @@
+{
+  "name": "tts-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "client": "npm start --prefix client",
+    "build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "install": "npm install --prefix client && npm install --prefix server && npm install"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "google-tts-api": "^2.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
