@@ -178,7 +178,7 @@ function App() {
       <h1>🔊 Đọc Văn Bản + Dịch + Ghi âm + Tải về MP3</h1>
 
       <textarea
-        placeholder="Nhập nội dung cần đọc hoặc dịch hoặc ghi âm..."
+        placeholder="Nhập nội dung cần đọc hoặc ghi âm..."
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={6}
