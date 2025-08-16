@@ -158,6 +158,21 @@ function App() {
       }
     }
   };
+  const handleCopyText = async () => {
+  if (!text.trim()) {
+    alert("Không có nội dung để sao chép.");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Nội dung đã được sao chép!");
+  } catch (err) {
+    console.error("Lỗi khi sao chép:", err);
+    alert("Sao chép thất bại. Trình duyệt có thể không hỗ trợ.");
+  }
+};
+
   return (
     <div className="container">
       <h1>🔊 Đọc Văn Bản + Dịch + Ghi âm + Tải về MP3</h1>
@@ -168,6 +183,12 @@ function App() {
         onChange={(e) => setText(e.target.value)}
         rows={6}
       />
+      <div style={{ marginBottom: "20px" }}>
+        <button onClick={handleCopyText}>
+          📋 Sao chép nội dung
+        </button>
+      </div>
+
 
       <div className="translate-buttons">
         <button disabled={isTranslating} onClick={() => translateText("en")}>
