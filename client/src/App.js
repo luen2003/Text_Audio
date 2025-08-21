@@ -59,7 +59,7 @@ function App() {
       const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: text.slice(0, 200), lang }),
+        body: JSON.stringify({ text: text, lang }),
       });
 
       const data = await res.json();
